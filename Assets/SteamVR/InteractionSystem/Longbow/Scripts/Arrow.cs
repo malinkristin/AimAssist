@@ -41,7 +41,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		void Start()
 		{
-			Physics.IgnoreCollision( shaftRB.GetComponent<Collider>(), Player.instance.headCollider );
+			//Physics.IgnoreCollision( shaftRB.GetComponent<Collider>(), Player.instance.headCollider );
 		}
 
 
