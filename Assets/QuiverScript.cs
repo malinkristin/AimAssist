@@ -6,7 +6,7 @@ public class QuiverScript : MonoBehaviour
 {
     private GameObject quiver;
 
-    private GameObject currentArrow;
+    private GameObject currentKnife;
 	public GameObject arrowPrefab;
 
     public int maxArrowCount = 10;
@@ -40,7 +40,7 @@ public class QuiverScript : MonoBehaviour
             rightController = rightHandDevices[0];
         }
 
-        if (Vector3.Distance( this.transform.position, quiver.transform.position ) < 0.25f && ( currentArrow == null )) {
+        if (Vector3.Distance( this.transform.position, quiver.transform.position ) < 0.25f && ( currentKnife == null )) {
            
             
             rightController = rightHandDevices[0];
@@ -49,7 +49,7 @@ public class QuiverScript : MonoBehaviour
             bool gripValue;
             if (rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out gripValue) && gripValue) {
                 //Debug.Log("pressed");
-                currentArrow = InstantiateKnife();
+                currentKnife = InstantiateKnife();
                 source.PlayOneShot(arrowSpawnSound);
             }
         }
