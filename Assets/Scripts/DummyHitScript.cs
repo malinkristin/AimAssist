@@ -25,7 +25,7 @@ public class DummyHitScript : MonoBehaviour
      void OnCollisionEnter(Collision other)
         {
             if (!isDead && other.gameObject.tag == "projectile") {
-                if(counter == 2) {
+                if(stuckArrows.Count == 3) {
                     foreach(GameObject arrow in stuckArrows) {
                         Destroy(arrow);
                     }
@@ -38,7 +38,6 @@ public class DummyHitScript : MonoBehaviour
                 other.rigidbody.isKinematic = true;
                 stuckArrows.Add(other.gameObject);
                 Debug.Log("hit");
-                counter++;
             }
         }
 }

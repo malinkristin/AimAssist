@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 4955246626782319643}
   - component: {fileID: 7142820903540285649}
   m_Layer: 0
-  m_Name: VR_Reticle_1_A
+  m_Name: VR_Reticle_Circular
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8316821507885964222
 Transform:
   m_ObjectHideFlags: 0
