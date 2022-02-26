@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.slingshot.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\malin\\uni\\VR\\Slingshot\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\malin\\uni\\archery\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "Slingshot [Testing]"
