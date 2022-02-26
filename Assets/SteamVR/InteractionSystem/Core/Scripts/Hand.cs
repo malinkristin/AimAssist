@@ -152,7 +152,7 @@ namespace Valve.VR.InteractionSystem
         {
             get
             {
-                return trackedObject.isValid;
+                return true;
             }
         }
 
