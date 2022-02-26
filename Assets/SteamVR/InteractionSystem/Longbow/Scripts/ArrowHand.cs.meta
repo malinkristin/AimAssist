@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d85480da87762944399dab6c99985eef
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - normalHand: {instanceID: 0}
+  - arrowHand: {fileID: 187848, guid: d410d7126dd411c4ea651fc94eae9202, type: 3}
+  - arrowPrefab: {instanceID: 0}
+  - arrowNockTransform: {instanceID: 0}
+  - arrowSpawnSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
