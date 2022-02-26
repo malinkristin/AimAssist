@@ -61,8 +61,7 @@ public class QuiverScript : MonoBehaviour
     private GameObject InstantiateKnife()
 		{
 			GameObject arrow = Instantiate( arrowPrefab, knifePos.transform.position, knifePos.transform.rotation ) as GameObject;
-			arrow.name = "Bow Arrow";
-			arrow.transform.parent = knifePos.transform;
+			//arrow.transform.parent = knifePos.transform;
 
 			arrowList.Add( arrow );
 
@@ -78,4 +77,8 @@ public class QuiverScript : MonoBehaviour
 
 			return arrow;
 		}
+
+    public void ClearKnife() {
+        currentKnife = null;
+    }    
 }

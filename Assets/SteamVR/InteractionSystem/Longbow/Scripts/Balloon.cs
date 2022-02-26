@@ -118,6 +118,11 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		void OnCollisionEnter( Collision collision )
 		{
+			if (collision.gameObject.tag == "projectile") {
+				SpawnParticles( popPrefab, null );
+				Destroy( gameObject );
+			}
+
 			if ( bParticlesSpawned )
 			{
 				return;
