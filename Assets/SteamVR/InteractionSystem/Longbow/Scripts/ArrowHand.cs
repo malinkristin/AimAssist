@@ -15,10 +15,8 @@ namespace Valve.VR.InteractionSystem
 	public class ArrowHand : MonoBehaviour
 	{
 
-		public GameObject normalHand;
-		public GameObject arrowHand;
 		private Hand hand;
-		private Longbow bow;
+		public Longbow bow;
 
 		private GameObject currentArrow;
 		public GameObject arrowPrefab;
@@ -45,6 +43,9 @@ namespace Valve.VR.InteractionSystem
 		private List<GameObject> arrowList;
 
 		private GameObject quiver;
+		UnityEngine.XR.InputDevice rightController;
+
+    	List<UnityEngine.XR.InputDevice> rightHandDevices;
 
 
 		//-------------------------------------------------
@@ -52,7 +53,7 @@ namespace Valve.VR.InteractionSystem
 		{
 			allowTeleport = GetComponent<AllowTeleportWhileAttachedToHand>();
 			//allowTeleport.teleportAllowed = true;
-			allowTeleport.overrideHoverLock = false;
+			//allowTeleport.overrideHoverLock = false;
 
 			arrowList = new List<GameObject>();
 			quiver = GameObject.FindGameObjectWithTag("quiver");
@@ -72,7 +73,7 @@ namespace Valve.VR.InteractionSystem
 		{
 			GameObject arrow = Instantiate( arrowPrefab, arrowNockTransform.position, arrowNockTransform.rotation ) as GameObject;
 			arrow.name = "Bow Arrow";
-			arrow.transform.parent = arrowNockTransform;
+			//arrow.transform.parent = arrowNockTransform;
 			Util.ResetTransform( arrow.transform );
 
 			arrowList.Add( arrow );
@@ -92,7 +93,7 @@ namespace Valve.VR.InteractionSystem
 
 
 		//-------------------------------------------------
-		private void HandAttachedUpdate( Hand hand )
+		void Update()
 		{
 			if ( bow == null )
 			{
@@ -110,13 +111,25 @@ namespace Valve.VR.InteractionSystem
 				//arrowSpawnSound.Play();
 			}
 
-			if (Vector3.Distance( hand.transform.position, quiver.transform.position ) < 0.25f && ( currentArrow == null )) {
-				GrabTypes grab = hand.GetBestGrabbingType();
-				if (grab == GrabTypes.Grip) {
+			rightHandDevices = new List<UnityEngine.XR.InputDevice>();
+			UnityEngine.XR.InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.RightHand, rightHandDevices);
+			if (rightHandDevices.Count > 0 && rightController == null) {
+				//Debug.Log(string.Format("Device name '{0}' with role '{1}'", rightHandDevices[0].name, rightHandDevices[0].role.ToString()));
+				rightController = rightHandDevices[0];
+			}
+
+			if (Vector3.Distance( this.transform.position, quiver.transform.position ) < 0.25f && ( currentArrow == null )) {
+			
+				
+				rightController = rightHandDevices[0];
+			
+
+				bool gripValue;
+				if (rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out gripValue) && gripValue) {
+					Debug.Log("pressed");
 					currentArrow = InstantiateArrow();
 					arrowSpawnSound.Play();
 				}
-
 			}
 
 			float distanceToNockPosition = Vector3.Distance( transform.parent.position, bow.nockTransform.position );
@@ -147,7 +160,7 @@ namespace Valve.VR.InteractionSystem
 				}
 				else // Not close enough for position lerp, reset position
 				{
-					arrowNockTransform.position = arrowNockTransform.parent.position;
+					//arrowNockTransform.position = arrowNockTransform.parent.position;
 				}
 
 
@@ -185,18 +198,14 @@ namespace Valve.VR.InteractionSystem
 					}
 				}
 
-                GrabTypes bestGrab = hand.GetBestGrabbingType(GrabTypes.Pinch, true);
-
-                // If arrow is close enough to the nock position and we're pressing the trigger, and we're not nocked yet, Nock
-                if ( ( distanceToNockPosition < nockDistance ) && bestGrab != GrabTypes.None && !nocked )
-				{
+                bool triggerValue;
+            	if (rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out triggerValue) && triggerValue) {
 					if ( currentArrow == null )
 					{
 						//currentArrow = InstantiateArrow();
 					}
 
 					nocked = true;
-                    nockedWithType = bestGrab;
 					bow.StartNock( this );
 					hand.HoverLock( GetComponent<Interactable>() );
 					allowTeleport.teleportAllowed = false;
@@ -208,26 +217,24 @@ namespace Valve.VR.InteractionSystem
 
 
 			// If arrow is nocked, and we release the trigger
-			if ( nocked && hand.IsGrabbingWithType(nockedWithType) == false )
-			{
+			//if ( nocked && hand.IsGrabbingWithType(nockedWithType) == false )
+			//{
 				if ( bow.pulled ) // If bow is pulled back far enough, fire arrow, otherwise reset arrow in arrowhand
 				{
 					FireArrow();
 				}
 				else
 				{
-					arrowNockTransform.rotation = currentArrow.transform.rotation;
-					currentArrow.transform.parent = arrowNockTransform;
-					Util.ResetTransform( currentArrow.transform );
+					//arrowNockTransform.rotation = currentArrow.transform.rotation;
+					//currentArrow.transform.parent = arrowNockTransform;
+					//Util.ResetTransform( currentArrow.transform );
 					nocked = false;
                     nockedWithType = GrabTypes.None;
 					bow.ReleaseNock();
-					hand.HoverUnlock( GetComponent<Interactable>() );
-					allowTeleport.teleportAllowed = true;
 				}
 
 				bow.StartRotationLerp(); // Arrow is releasing from the bow, tell the bow to lerp back to controller rotation
-			}
+			//}
 		}
 
 
@@ -312,7 +319,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void FindBow()
 		{
-			bow = hand.otherHand.GetComponentInChildren<Longbow>();
+			//bow = hand.otherHand.GetComponentInChildren<Longbow>();
 		}
 	}
 }

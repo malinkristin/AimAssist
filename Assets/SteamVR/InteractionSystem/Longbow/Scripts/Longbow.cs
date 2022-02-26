@@ -327,7 +327,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		public void ArrowInPosition()
 		{
-			DoHandednessCheck();
+			//DoHandednessCheck();
 
 			if ( nockSound != null )
 			{
@@ -341,7 +341,6 @@ namespace Valve.VR.InteractionSystem
 		{
 			// ArrowHand tells us to do this when we release the buttons when bow is nocked but not drawn far enough
 			nocked = false;
-			hand.HoverUnlock( GetComponent<Interactable>() );
 			this.StartCoroutine( this.ResetDrawAnim() );
 		}
 

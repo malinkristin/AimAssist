@@ -9,8 +9,6 @@ public class QuiverScript : MonoBehaviour
     private GameObject currentArrow;
 	public GameObject arrowPrefab;
 
-	public Transform arrowNockTransform;
-
     public int maxArrowCount = 10;
 	private List<GameObject> arrowList;
 
@@ -22,12 +20,13 @@ public class QuiverScript : MonoBehaviour
 
     public AudioSource source;
 
+    public GameObject knifePos;
+
     // Start is called before the first frame update
     void Awake()
     {
         quiver = GameObject.FindGameObjectWithTag("quiver");
         arrowList = new List<GameObject>();
-        
         
     }
 
@@ -42,25 +41,28 @@ public class QuiverScript : MonoBehaviour
         }
 
         if (Vector3.Distance( this.transform.position, quiver.transform.position ) < 0.25f && ( currentArrow == null )) {
-            Debug.Log("quiver");
+           
             
             rightController = rightHandDevices[0];
-            Debug.Log("right Hand Assigned");
+        
 
             bool gripValue;
             if (rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out gripValue) && gripValue) {
-                Debug.Log("pressed");
-                currentArrow = InstantiateArrow();
+                //Debug.Log("pressed");
+                currentArrow = InstantiateKnife();
                 source.PlayOneShot(arrowSpawnSound);
             }
-        }           
+        }
+
+        
+
     }
 
-    private GameObject InstantiateArrow()
+    private GameObject InstantiateKnife()
 		{
-			GameObject arrow = Instantiate( arrowPrefab, arrowNockTransform.position, arrowNockTransform.rotation ) as GameObject;
+			GameObject arrow = Instantiate( arrowPrefab, knifePos.transform.position, knifePos.transform.rotation ) as GameObject;
 			arrow.name = "Bow Arrow";
-			arrow.transform.parent = arrowNockTransform;
+			arrow.transform.parent = knifePos.transform;
 
 			arrowList.Add( arrow );
 
