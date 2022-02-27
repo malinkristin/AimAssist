@@ -7,16 +7,16 @@ public class QuiverScript : MonoBehaviour
     private GameObject quiver;
 
     private GameObject currentKnife;
-	public GameObject arrowPrefab;
+	public GameObject knifePrefab;
 
     public int maxArrowCount = 10;
-	private List<GameObject> arrowList;
+	private List<GameObject> knifeList;
 
     UnityEngine.XR.InputDevice rightController;
 
     List<UnityEngine.XR.InputDevice> rightHandDevices;
 
-    public AudioClip arrowSpawnSound;
+    public AudioClip knifeSpawnSound;
 
     public AudioSource source;
 
@@ -26,7 +26,7 @@ public class QuiverScript : MonoBehaviour
     void Awake()
     {
         quiver = GameObject.FindGameObjectWithTag("quiver");
-        arrowList = new List<GameObject>();
+        knifeList = new List<GameObject>();
         
     }
 
@@ -50,35 +50,49 @@ public class QuiverScript : MonoBehaviour
             if (rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out gripValue) && gripValue) {
                 //Debug.Log("pressed");
                 currentKnife = InstantiateKnife();
-                source.PlayOneShot(arrowSpawnSound);
+                source.PlayOneShot(knifeSpawnSound);
             }
         }
-
-        
-
     }
 
     private GameObject InstantiateKnife()
 		{
-			GameObject arrow = Instantiate( arrowPrefab, knifePos.transform.position, knifePos.transform.rotation ) as GameObject;
+            rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.deviceRotation, out Quaternion rotR);
+			GameObject knife = Instantiate( knifePrefab, knifePos.transform.position, rotR) as GameObject;
 			//arrow.transform.parent = knifePos.transform;
 
-			arrowList.Add( arrow );
+			knifeList.Add( knife );
 
-			while ( arrowList.Count > maxArrowCount )
+			while ( knifeList.Count > maxArrowCount )
 			{
-				GameObject oldArrow = arrowList[0];
-				arrowList.RemoveAt( 0 );
-				if ( oldArrow )
+				GameObject oldKnife = knifeList[0];
+				knifeList.RemoveAt( 0 );
+				if ( oldKnife )
 				{
-					Destroy( oldArrow );
+					Destroy( oldKnife );
 				}
 			}
 
-			return arrow;
+			return knife;
 		}
 
     public void ClearKnife() {
         currentKnife = null;
-    }    
+    }
+
+    public void OnReleaseKnife() {
+        Vector3 aim = AimAssist.GetAim();
+        if (aim.Equals(Vector3.zero)) {
+            Debug.Log("there was no aim");
+            ClearKnife();
+            return;
+        }
+        
+        Debug.Log("got aim, now gonna push");
+        Rigidbody rigBod = currentKnife.gameObject.GetComponent<Rigidbody>();
+
+        rigBod.AddForce((aim - currentKnife.transform.position)* 2, ForceMode.Impulse);
+
+        ClearKnife();
+    }
 }

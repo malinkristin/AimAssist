@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: training_dummy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4697017240656324050, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
+      propertyPath: m_TagString
+      value: target
+      objectReference: {fileID: 0}
     - target: {fileID: 5360683131785772904, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -771,6 +775,10 @@ PrefabInstance:
     - target: {fileID: 4697017240656324050, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
       propertyPath: m_Name
       value: training_dummy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697017240656324050, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
+      propertyPath: m_TagString
+      value: target
       objectReference: {fileID: 0}
     - target: {fileID: 5360683131785772904, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
       propertyPath: m_RootOrder
@@ -1676,7 +1684,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 0
+    m_Bits: 4294967295
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_StartingSelectedInteractable: {fileID: 0}
@@ -1762,7 +1770,7 @@ MonoBehaviour:
   m_HoverTimeToSelect: 0.5
   m_EnableUIInteraction: 1
   m_AllowAnchorControl: 1
-  m_UseForceGrab: 1
+  m_UseForceGrab: 0
   m_RotateSpeed: 180
   m_TranslateSpeed: 1
   m_AnchorRotateReferenceFrame: {fileID: 0}
@@ -1781,7 +1789,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 8848131633249631744, guid: eb91affb984e740dbb2082626ba96efb, type: 3}
+  m_ModelPrefab: {fileID: 6255773150727152642, guid: d45a988d31f828a4394e28039a71d066, type: 3}
   m_ModelParent: {fileID: 0}
   m_Model: {fileID: 0}
   m_AnimateModel: 0
@@ -3711,6 +3719,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: training_dummy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4697017240656324050, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
+      propertyPath: m_TagString
+      value: target
+      objectReference: {fileID: 0}
     - target: {fileID: 5360683131785772904, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -3836,6 +3848,10 @@ PrefabInstance:
     - target: {fileID: 4697017240656324050, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
       propertyPath: m_Name
       value: training_dummy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697017240656324050, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
+      propertyPath: m_TagString
+      value: target
       objectReference: {fileID: 0}
     - target: {fileID: 5360683131785772904, guid: 0331b169005eb1d469455efaa6b9024a, type: 3}
       propertyPath: m_RootOrder
@@ -3981,7 +3997,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1272874862}
         m_TargetAssemblyTypeName: QuiverScript, Assembly-CSharp
-        m_MethodName: ClearKnife
+        m_MethodName: OnReleaseKnife
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4258,7 +4274,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 7111071080452410799, guid: a2e8ee2005c074447b929af42b7f5068, type: 3}
+  m_ModelPrefab: {fileID: 75570963754299599, guid: 76a89af6e23748e4db1ad813136b81f7, type: 3}
   m_ModelParent: {fileID: 0}
   m_Model: {fileID: 0}
   m_AnimateModel: 0
@@ -4421,9 +4437,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92c3061956e9324086bfd93590f5f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 9011106792007128151, guid: e6f977f95f61db940ac13170b9646a2d, type: 3}
+  knifePrefab: {fileID: 9011106792007128151, guid: e6f977f95f61db940ac13170b9646a2d, type: 3}
   maxArrowCount: 50
-  arrowSpawnSound: {fileID: 8300000, guid: 4188a37a2f8da3b4084af4e3ee9b6a31, type: 3}
+  knifeSpawnSound: {fileID: 8300000, guid: 4188a37a2f8da3b4084af4e3ee9b6a31, type: 3}
   source: {fileID: 1121175162}
   knifePos: {fileID: 957127530}
 --- !u!1 &1373628574
