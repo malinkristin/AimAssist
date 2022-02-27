@@ -2,7 +2,7 @@
 Semesterarbeit VR - Malin Kristin Daub - 
 Matrikelnummer 339962 - TH Lübeck
 
-**Documentation:** [Aim Assist in Virtual Reality](./AimAssistPoster.pdf)
+**Documentation:** [Aim Assist in Virtual Reality](./Studienarbeit_Mixed_Reality.pdf)
 
 **Demo Video:** [AimAssistDemo](./AimAssistDemo.mp4)
 
