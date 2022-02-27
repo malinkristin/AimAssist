@@ -4,8 +4,6 @@ Matrikelnummer 339962 - TH Lübeck
 
 **Documentation:** [Aim Assist in Virtual Reality](./AimAssistPoster.pdf)
 
-Builds der Applikation (apk) zum Installieren können im Verzeichnis [Assets/androidBuilds](Assets/androidBuilds) gefunden werden.
-
 ## Interaktionsmöglichkeiten:
 
 - Beenden der Applikation: Button B (rechter Controller)
