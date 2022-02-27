@@ -4,6 +4,8 @@ Matrikelnummer 339962 - TH Lübeck
 
 **Documentation:** [Aim Assist in Virtual Reality](./AimAssistPoster.pdf)
 
+**Demo Video:** [AimAssistDemo](./AimAssistDemo.mp4)
+
 ## Interaktionsmöglichkeiten:
 
 - Beenden der Applikation: Button B (rechter Controller)
