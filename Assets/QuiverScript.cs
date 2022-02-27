@@ -35,31 +35,34 @@ public class QuiverScript : MonoBehaviour
     {
         rightHandDevices = new List<UnityEngine.XR.InputDevice>();
         UnityEngine.XR.InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.RightHand, rightHandDevices);
-        if (rightHandDevices.Count > 0 && rightController == null) {
-            //Debug.Log(string.Format("Device name '{0}' with role '{1}'", rightHandDevices[0].name, rightHandDevices[0].role.ToString()));
-            rightController = rightHandDevices[0];
-        }
 
-        if (Vector3.Distance( this.transform.position, quiver.transform.position ) < 0.25f && ( currentKnife == null )) {
-           
-            
+
+        //if (rightHandDevices.Count > 0) {
+            //Debug.Log(string.Format("Device name '{0}' with role '{1}'", rightHandDevices[0].name, rightHandDevices[0].role.ToString()));
             rightController = rightHandDevices[0];
         
 
-            bool gripValue;
-            if (rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out gripValue) && gripValue) {
-                //Debug.Log("pressed");
-                currentKnife = InstantiateKnife();
-                source.PlayOneShot(knifeSpawnSound);
-            }
-        }
+            if (Vector3.Distance( this.transform.position, quiver.transform.position ) < 0.25f && ( currentKnife == null )) {
+            
+                //Debug.Log("quiver in reach");
+                rightController = rightHandDevices[0];
+            
 
-        rightController = rightHandDevices[0];
-        bool button;
-        if (rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondaryButton, out button) && button) {
-            Debug.Log("Application Quit");
-            Quit();
-        }
+                bool gripValue;
+                if (rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out gripValue) && gripValue) {
+                    Debug.Log("pressed");
+                    currentKnife = InstantiateKnife();
+                    source.PlayOneShot(knifeSpawnSound);
+                }
+            }
+
+            rightController = rightHandDevices[0];
+            bool button;
+            if (rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondaryButton, out button) && button) {
+                Debug.Log("Application Quit");
+                Quit();
+            }
+        //}
     }
 
     private GameObject InstantiateKnife()
