@@ -31,7 +31,7 @@ public class QuiverScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rightHandDevices = new List<UnityEngine.XR.InputDevice>();
         UnityEngine.XR.InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.RightHand, rightHandDevices);
@@ -52,6 +52,13 @@ public class QuiverScript : MonoBehaviour
                 currentKnife = InstantiateKnife();
                 source.PlayOneShot(knifeSpawnSound);
             }
+        }
+
+        rightController = rightHandDevices[0];
+        bool button;
+        if (rightController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondaryButton, out button) && button) {
+            Debug.Log("Application Quit");
+            Quit();
         }
     }
 
@@ -91,8 +98,12 @@ public class QuiverScript : MonoBehaviour
         Debug.Log("got aim, now gonna push");
         Rigidbody rigBod = currentKnife.gameObject.GetComponent<Rigidbody>();
 
-        rigBod.AddForce((aim - currentKnife.transform.position)* 2, ForceMode.Impulse);
+        rigBod.AddForce((aim - currentKnife.transform.position)* 0.5f, ForceMode.Impulse);
 
         ClearKnife();
+    }
+
+    private void Quit() {
+        Application.Quit();
     }
 }

@@ -53,7 +53,7 @@ namespace Valve.VR.InteractionSystem
 
 
 		//-------------------------------------------------
-		void Update()
+		void FixedUpdate()
 		{
 			if ( balloonPrefab == null )
 			{
