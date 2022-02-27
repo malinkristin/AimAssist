@@ -2,7 +2,7 @@
 Semesterarbeit VR - Malin Kristin Daub - 
 Matrikelnummer 339962 - TH Lübeck
 
-Builds der Applikation (apk) zum Installieren können im Verzeichnis ./builds gefunden werden.
+Builds der Applikation (apk) zum Installieren können im Verzeichnis Assets/androidBuilds gefunden werden.
 
 ## Interaktionsmöglichkeiten:
 
