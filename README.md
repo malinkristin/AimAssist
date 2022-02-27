@@ -9,4 +9,4 @@ Builds der Applikation (apk) zum Installieren können im Verzeichnis Assets/andr
 - Beenden der Applikation: Button B (rechter Controller)
 - neues Messer: von hinter der Schulter ziehen durch Grip-Button des rechten Controllers
 - werfen: Armbewegung und Loslassen des Grip Buttons
-- Target Auswahl für Aim Assist: Trigger Button des linken Controllers (wenn RayCast blau ist)
+- Target Auswahl für Aim Assist: Trigger Button des linken Controllers (RayCast wird blau, wenn Target ausgewählt wurde)
